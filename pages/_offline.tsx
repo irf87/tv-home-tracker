@@ -2,29 +2,21 @@ import List from '@mui/material/List';
 import Container from '@mui/material/Container';
 
 import CardMovie from '@/components/CardMovie';
-import MenuButton from '@/components/MenuButton';
 
 import { seriesList } from '@/data/data';
 import { SeriesProps } from '@/modules/series/types';
 
-interface Props {
-  seriesList: SeriesProps[]
-}
 
-export default function Home({ seriesList }: Props) {
+export default function Home() {
+  const seriesListLocal: SeriesProps[] = seriesList;
   return (
     <Container sx={{padding: 0}}>
+      <div>Offline</div>
       <List disablePadding>
-        {seriesList.map(list => (
+        {seriesListLocal.map(list => (
           <CardMovie key={list.idTDMV} link={list.justWatchLink} img={list.poster} name={list.name} />
         ))}
       </List>
-      {/* <MenuButton /> */}
     </Container>
   )
-}
-
-
-export async function getServerSideProps() {
-  return { props: { seriesList } }
 }

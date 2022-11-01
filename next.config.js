@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ['www.themoviedb.org'],
+  },
 }
 
-module.exports = nextConfig
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  skipWaiting: false
+})
+
+module.exports = withPWA(nextConfig)
